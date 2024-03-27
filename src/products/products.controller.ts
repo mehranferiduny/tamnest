@@ -1,8 +1,9 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Put, UseGuards } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { UsersService } from 'src/users/users.service';
+import { JwtAuthGuard } from 'src/jwt-auth/jwt-auth.guard';
 
 @Controller('products')
 export class ProductsController {
@@ -11,7 +12,7 @@ export class ProductsController {
 
   @Post()
   create(@Body() createProductDto: CreateProductDto) {
-    // return this.productsService.create(createProductDto);
+    return this.productsService.create(createProductDto);
     console.log(createProductDto.price)
     if(createProductDto.price > 1000){
       throw new Error("price is higeh")
@@ -20,8 +21,16 @@ export class ProductsController {
   }
 
   @Get()
+  @UseGuards(JwtAuthGuard)
   findAll() {
-    return []
+    return {
+      message:"ok",
+      data:{
+        name:"mehran",
+        desc:"hi mehran",
+        price:24
+      }
+    }
     // return this.productsService.findAll();
   }
 

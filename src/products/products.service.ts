@@ -23,7 +23,6 @@ export class ProductsService {
   }
 
   remove(id: number) {
-    console.log(this.UserServise.findById(1));
-    return `This action removes a #${id} product`;
+ 
   }
 }
