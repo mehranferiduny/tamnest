@@ -14,7 +14,7 @@ export default class Users{
   @Column({length:25, nullable:true})
   lastName:string;
 
-  @Column({nullable:false})
+  @Column({nullable:false })
   password:string;
 
   @Column({nullable:true})
