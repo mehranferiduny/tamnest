@@ -1,11 +1,12 @@
 import { IsEmpty, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength, MinLength } from 'class-validator'
+import userGard from 'src/users/dto/userGard';
 
 export class CreateProductDto {
   @IsString()
   @IsNotEmpty()
   @MinLength(2)
   @MaxLength(12)
-  readonly name:string;
+  readonly title:string;
   @IsString()
   @IsNotEmpty()
   @MinLength(12)
@@ -14,4 +15,7 @@ export class CreateProductDto {
   @IsNumber()
   @IsOptional()
   readonly price:number;
+
+  @IsOptional()
+  user:userGard;
 }

@@ -22,6 +22,7 @@ export class UsersService {
   }
 
   comperPass=async(password:string,userPassword:string): Promise<boolean>=>{
+    console.log(password,userPassword)
   return await bycript.compare(password,userPassword)
   }
 

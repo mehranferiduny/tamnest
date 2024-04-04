@@ -22,10 +22,10 @@ export class AuthService {
   }
   login= async(LoginDot:LoginDot)=>{
     const user=await this.user_servises.findUserByEmail(LoginDot.email);
-
       if(!user){
         throw new HttpException("user not fond!",404);
       }
+    
      const isMachPass= await this.user_servises.comperPass(LoginDot.password,user.password) 
      if(!isMachPass){
       throw new HttpException("password is woring",400);
